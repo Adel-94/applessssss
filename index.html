@@ -1,0 +1,76 @@
+<html>
+
+<head>
+    <title>Drag-drop</title>
+    <style>
+        #qab {
+            width: 160px;
+            height: 160px;
+            border: 1px solid #333;
+            float: right;
+            position: absolute;
+            top: 40%;
+            left: 40%;
+        }
+    </style>
+
+    <head>
+
+        <body>
+            <div id="apples">
+                <img id="drag1" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag2" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag3" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag4" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag5" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag6" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag7" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag8" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag9" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+                <img id="drag0" src="imgs/apple.jpg" draggable="true" ondragstart="drag(event, this.id)" ondragend="show(this.id)" width="40"
+                    height="40">
+
+            </div>
+            <div id="qab">
+                <div id="line1" style="width: 40px; height: 40px; margin: 0 auto;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="line2" style="width: 80px; height: 40px; margin: 0 auto;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="line3" style="width: 120px; height: 40px; margin: 0 auto;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div id="line4" style="width: 160px; height: 40px; margin: 0 auto;" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+            </div>
+        </body>
+
+        <script>
+            function allowDrop(event) {
+                event.preventDefault();
+            }
+
+            function drag(event, id) {
+                var img1 = document.getElementById(id);
+                event.dataTransfer.setData("text", img1.id);
+                img1.style.opacity = 0;
+            }
+
+            function drop(event) {
+                var data = event.dataTransfer.getData("text");
+                console.log(event.target.nodeName)
+                if (event.target.nodeName !== "IMG") {
+                    event.target.appendChild(document.getElementById(data));
+                }
+            }
+
+            function show(id) {
+                var img1 = document.getElementById(id);
+                img1.style.opacity = 1;
+            }
+        </script>
+
+</html>
